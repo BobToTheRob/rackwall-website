@@ -1,0 +1,231 @@
+@import "tailwindcss";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+/* ============================================================================
+   RackWall design tokens — source of truth: /brand/tokens/rackwall.tokens.css
+   (RackWall Brand Package V1.2). Do NOT hardcode colors in components; use the
+   --rw-* tokens (or the Tailwind utilities wired to them below). The only raw
+   colors allowed in components are genuine CONTENT colors: filament/material
+   swatches and the swatch-tinted remaining bar.
+   Themes: illuminated-workshop (dark, default/hero) · daylight-workshop (light).
+   ========================================================================== */
+:root {
+  /* Runtime accent — fallbacks apply before settings load. */
+  --rw-accent: var(--rw-accent-primary);
+  --rw-accent-dk: var(--rw-accent-primary-dark);
+
+  --rw-font-sans:
+    Satoshi, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
+    sans-serif;
+  --rw-purple: #7c5cff;
+  --rw-purple-dark: #5838e8;
+  --rw-purple-soft: #b18cff;
+  --rw-radius-sm: 8px;
+  --rw-radius-md: 12px;
+  --rw-radius-lg: 18px;
+  --rw-radius-xl: 24px;
+
+  --rw-accent-on: #f7f7fb;
+}
+
+:root[data-theme="illuminated-workshop"],
+.theme-illuminated-workshop {
+  color-scheme: dark;
+  --rw-bg-app: #0b0d12;
+  --rw-bg-surface: #11131a;
+  --rw-bg-surface-elevated: #1a1e28;
+  --rw-bg-card: #151922;
+  --rw-bg-card-hover: #1c2230;
+  --rw-text-primary: #f7f7fb;
+  --rw-text-secondary: #d8dce7;
+  --rw-text-muted: #9ca3af;
+  --rw-border-subtle: rgba(255, 255, 255, 0.08);
+  --rw-border-strong: rgba(255, 255, 255, 0.16);
+  --rw-accent-primary: #7c5cff;
+  --rw-accent-primary-dark: #5838e8;
+  --rw-accent-primary-soft: rgba(124, 92, 255, 0.16);
+  --rw-accent-primary-border: rgba(124, 92, 255, 0.42);
+  --rw-accent-soft: color-mix(in srgb, var(--rw-accent) 16%, transparent);
+  --rw-accent-border: color-mix(in srgb, var(--rw-accent) 42%, transparent);
+  --rw-success: #22c55e;
+  --rw-warning: #f59e0b;
+  --rw-danger: #ef4444;
+  --rw-warning-soft: rgba(245, 158, 11, 0.15);
+  --rw-danger-soft: rgba(239, 68, 68, 0.15);
+  --rw-info: #0ea5e9;
+  --rw-shadow-card: 0 20px 48px rgba(0, 0, 0, 0.32);
+  --rw-glow-purple: 0 0 28px rgba(124, 92, 255, 0.38);
+
+  --rw-rowline: #20232e;
+  --rw-chip-border: #2e3340;
+
+  --rw-text-faint: #6f7280;
+
+  --rw-accent-purple: var(--rw-accent-primary);
+  --rw-accent-blue: #0ea5e9;
+  --rw-accent-green: #22c55e;
+  --rw-accent-red: #ef4444;
+
+  --rw-sp-1: #4a4f5e;
+  --rw-sp-2: #2b2f3a;
+  --rw-sp-edge: #5e6475;
+  --rw-sp-track: #2e323d;
+  --rw-sp-hole: #0c0d11;
+}
+
+:root[data-theme="daylight-workshop"],
+.theme-daylight-workshop {
+  color-scheme: light;
+  --rw-bg-app: #faf8f4;
+  --rw-bg-surface: #ffffff;
+  --rw-bg-surface-elevated: #f5f2ec;
+  --rw-bg-card: #ffffff;
+  --rw-bg-card-hover: #ece7df;
+  --rw-text-primary: #2d2a26;
+  --rw-text-secondary: #665c50;
+  --rw-text-muted: #8d7e68;
+  --rw-border-subtle: rgba(69, 55, 40, 0.12);
+  --rw-border-strong: rgba(69, 55, 40, 0.22);
+  --rw-accent-primary: #7c5cff;
+  --rw-accent-primary-dark: #5b38e8;
+  --rw-accent-primary-soft: rgba(124, 92, 255, 0.12);
+  --rw-accent-primary-border: rgba(124, 92, 255, 0.34);
+  --rw-accent-soft: color-mix(in srgb, var(--rw-accent) 12%, transparent);
+  --rw-accent-border: color-mix(in srgb, var(--rw-accent) 34%, transparent);
+  --rw-accent-workshop: #8d7e68;
+  --rw-success: #22c55e;
+  --rw-warning: #f59e0b;
+  --rw-danger: #ef4444;
+  --rw-warning-soft: rgba(245, 158, 11, 0.12);
+  --rw-danger-soft: rgba(239, 68, 68, 0.12);
+  --rw-info: #0ea5e9;
+  --rw-shadow-card: 0 14px 32px rgba(80, 58, 32, 0.12);
+
+  --rw-rowline: #f1ece4;
+  --rw-chip-border: #e6dfd5;
+
+  --rw-text-faint: #8d7e68;
+
+  --rw-accent-purple: var(--rw-accent-primary);
+  --rw-accent-blue: #0ea5e9;
+  --rw-accent-green: #22c55e;
+  --rw-accent-red: #ef4444;
+
+  --rw-sp-1: #5b606c;
+  --rw-sp-2: #41454f;
+  --rw-sp-edge: #6c7280;
+  --rw-sp-track: #d8d2c8;
+  --rw-sp-hole: #bfc3cc;
+}
+
+@theme inline {
+  /* RackWall surfaces */
+  --color-rw-app: var(--rw-bg-app);
+  --color-rw-surface: var(--rw-bg-surface);
+  --color-rw-surface-elevated: var(--rw-bg-surface-elevated);
+  --color-rw-card: var(--rw-bg-card);
+  --color-rw-card-hover: var(--rw-bg-card-hover);
+  /* RackWall text */
+  --color-rw-text: var(--rw-text-primary);
+  --color-rw-text-2: var(--rw-text-secondary);
+  --color-rw-text-muted: var(--rw-text-muted);
+  --color-rw-text-faint: var(--rw-text-faint);
+  /* RackWall borders */
+  --color-rw-border: var(--rw-border-subtle);
+  --color-rw-border-strong: var(--rw-border-strong);
+  /* RackWall accent + semantic */
+  --color-rw-accent: var(--rw-accent);
+  --color-rw-accent-dark: var(--rw-accent-dk);
+  --color-rw-accent-soft: var(--rw-accent-soft);
+  --color-rw-accent-border: var(--rw-accent-border);
+  --color-rw-on-accent: var(--rw-accent-on);
+  --color-rw-success: var(--rw-success);
+  --color-rw-warning: var(--rw-warning);
+  --color-rw-danger: var(--rw-danger);
+  --color-rw-info: var(--rw-info);
+  --color-rw-warning-soft: var(--rw-warning-soft);
+  --color-rw-danger-soft: var(--rw-danger-soft);
+
+  /* Legacy semantic aliases */
+  --color-canvas: var(--rw-bg-app);
+  --color-background: var(--rw-bg-surface);
+  --color-card: var(--rw-bg-card);
+  --color-card-foreground: var(--rw-text-primary);
+  --color-track: var(--rw-bg-surface-elevated);
+  --color-ink: var(--rw-text-primary);
+  --color-ink-2: var(--rw-text-secondary);
+  --color-ink-3: var(--rw-text-muted);
+  --color-border: var(--rw-border-subtle);
+  --color-border-strong: var(--rw-border-strong);
+  --color-primary: var(--rw-accent-dk);
+  --color-primary-foreground: var(--rw-accent-on);
+  --color-secondary: var(--rw-bg-surface-elevated);
+  --color-secondary-foreground: var(--rw-text-primary);
+  --color-muted: var(--rw-bg-surface-elevated);
+  --color-muted-foreground: var(--rw-text-muted);
+  --color-accent: var(--rw-bg-card-hover);
+  --color-accent-foreground: var(--rw-text-primary);
+  --color-destructive: var(--rw-danger);
+  --color-input: var(--rw-border-subtle);
+  --color-ring: var(--rw-accent);
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --font-sans: var(--rw-font-sans);
+
+  --text-rw-display: 40px;
+  --text-rw-display--line-height: 48px;
+  --text-rw-h1: 32px;
+  --text-rw-h1--line-height: 40px;
+  --text-rw-h2: 24px;
+  --text-rw-h2--line-height: 32px;
+  --text-rw-h3: 18px;
+  --text-rw-h3--line-height: 26px;
+  --text-rw-body: 14px;
+  --text-rw-body--line-height: 22px;
+  --text-rw-small: 12px;
+  --text-rw-small--line-height: 18px;
+  --text-rw-caption: 11px;
+  --text-rw-caption--line-height: 16px;
+
+  --animate-pop: pop 0.26s ease both;
+
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Satoshi @font-face hook — do NOT ship files until licensing is confirmed.
+   @font-face {
+     font-family: "Satoshi";
+     src: url("/brand/fonts/Satoshi-Variable.woff2") format("woff2");
+     font-weight: 300 900;
+     font-display: swap;
+   } */
+
+body {
+  margin: 0;
+  background: var(--rw-bg-app);
+  color: var(--rw-text-primary);
+  font-family: var(--rw-font-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+b,
+strong {
+  font-weight: 500;
+}
