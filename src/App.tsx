@@ -159,29 +159,33 @@ export default function App() {
 
       {/* ── Hero — centered vertical stack: render, wordmark, tagline, CTAs ── */}
       <section className="relative flex flex-col items-center px-5 pb-20 pt-16 text-center">
+        {/* Full-bleed black stage band behind the render — melts into the page top/bottom */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 z-0 h-80 sm:-top-16 sm:h-[680px]"
+          style={{
+            background:
+              "linear-gradient(to bottom, var(--rw-bg-app) 0%, #000 18%, #000 82%, var(--rw-bg-app) 100%)",
+          }}
+        />
+
         <img
           src="/hero/WebHero2.png"
           alt=""
           aria-hidden="true"
-          className="mx-auto h-auto w-full max-w-[840px]"
-          style={{
-            WebkitMaskImage:
-              "radial-gradient(ellipse 68% 68% at 50% 46%, #000 35%, transparent 82%)",
-            maskImage:
-              "radial-gradient(ellipse 68% 68% at 50% 46%, #000 35%, transparent 82%)",
-          }}
+          className="relative z-10 mx-auto h-auto w-full max-w-[840px]"
         />
 
-        <div className="mt-6">
+        <div className="relative z-10 mt-6">
           <HeroWordmark className="text-[clamp(2.75rem,9vw,5.5rem)] leading-none tracking-[-0.025em]" />
         </div>
 
         {/* Tagline is an open question — plain, honest placeholder, not final marketing copy */}
-        <p className="mt-4 max-w-md text-lg leading-relaxed text-rw-text-2">
+        <p className="relative z-10 mt-4 max-w-md text-lg leading-relaxed text-rw-text-2">
           Self-hosted 3D-printing workshop manager.
         </p>
 
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <div className="relative z-10 mt-8 flex flex-col gap-3 sm:flex-row">
           <a
             href={DEMO_URL}
             target="_blank"
