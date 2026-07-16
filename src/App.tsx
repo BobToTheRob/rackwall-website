@@ -163,18 +163,18 @@ export default function App() {
           src="/hero/WebHero2.png"
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover object-center"
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center"
         />
         {/* Fade to bg color at the edges so the render blends into the page */}
         <div
-          className="pointer-events-none absolute inset-0 -z-10"
+          className="pointer-events-none absolute inset-0 z-0"
           style={{
             background:
-              "radial-gradient(ellipse 60% 50% at 50% 30%, transparent, var(--rw-bg-app) 100%)",
+              "radial-gradient(ellipse 75% 65% at 50% 38%, transparent 0%, transparent 55%, var(--rw-bg-app) 100%)",
           }}
         />
 
-        <div className="mt-[22vw] max-w-[90vw] sm:mt-64">
+        <div className="relative z-10 mt-[22vw] max-w-[90vw] sm:mt-64">
           <HeroWordmark className="text-[clamp(2.75rem,9vw,5.5rem)] leading-none tracking-[-0.025em]" />
         </div>
 
