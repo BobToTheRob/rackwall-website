@@ -1,21 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#0B0D12"/>
-  <g fill="url(#g)">
-    <rect x="4"  y="4"  width="7" height="7" rx="2"/>
-    <rect x="13" y="4"  width="7" height="7" rx="2"/>
-    <rect x="22" y="4"  width="7" height="7" rx="2"/>
-    <rect x="4"  y="13" width="7" height="7" rx="2"/>
-    <rect x="13" y="13" width="7" height="7" rx="2"/>
-    <rect x="22" y="13" width="7" height="7" rx="2"/>
-    <rect x="4"  y="22" width="7" height="7" rx="2"/>
-    <rect x="13" y="22" width="7" height="7" rx="2"/>
-    <rect x="22" y="22" width="7" height="7" rx="2"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 92" width="92" height="92" role="img" aria-label="RackWall loading mark, 3x3 dot grid">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+    <linearGradient id="rwGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#B18CFF"/>
       <stop offset="55%" stop-color="#7C5CFF"/>
       <stop offset="100%" stop-color="#5838E8"/>
     </linearGradient>
   </defs>
+  <rect x="0" y="0" width="26" height="26" rx="6" fill="url(#rwGradient)"/>
+  <rect x="33" y="0" width="26" height="26" rx="6" fill="url(#rwGradient)"/>
+  <rect x="66" y="0" width="26" height="26" rx="6" fill="url(#rwGradient)"/>
+  <rect x="0" y="33" width="26" height="26" rx="6" fill="url(#rwGradient)"/>
+  <rect x="33" y="33" width="26" height="26" rx="6" fill="url(#rwGradient)"/>
+  <rect x="66" y="33" width="26" height="26" rx="6" fill="url(#rwGradient)"/>
+  <rect x="0" y="66" width="26" height="26" rx="6" fill="url(#rwGradient)"/>
+  <rect x="33" y="66" width="26" height="26" rx="6" fill="url(#rwGradient)"/>
+  <rect x="66" y="66" width="26" height="26" rx="6" fill="url(#rwGradient)"/>
 </svg>
