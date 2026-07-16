@@ -134,7 +134,7 @@ export default function App() {
       {/* ── Nav — baked SVG lockup (correct for small nav use) ───────────── */}
       <header className="sticky top-0 z-10 border-b border-rw-border bg-rw-app/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-3">
-          <img src={navLogo} alt="RackWall" className="h-6 w-auto" />
+          <img src={navLogo} alt="RackWall" className="h-8 w-auto" />
           <div className="flex items-center gap-2">
             <a
               href={DEMO_URL}
@@ -163,7 +163,13 @@ export default function App() {
           src="/hero/WebHero2.png"
           alt=""
           aria-hidden="true"
-          className="mx-auto h-auto w-full max-w-[420px]"
+          className="mx-auto h-auto w-full max-w-[840px]"
+          style={{
+            WebkitMaskImage:
+              "radial-gradient(ellipse 72% 72% at 50% 48%, #000 55%, transparent 92%)",
+            maskImage:
+              "radial-gradient(ellipse 72% 72% at 50% 48%, #000 55%, transparent 92%)",
+          }}
         />
 
         <div className="mt-6">
