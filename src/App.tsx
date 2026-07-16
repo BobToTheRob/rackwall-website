@@ -157,29 +157,21 @@ export default function App() {
         </div>
       </header>
 
-      {/* ── Hero — WebHero2.png background, live-text wordmark overlay ───── */}
-      <section className="relative flex flex-col items-center overflow-hidden px-5 pb-20 pt-16 text-center">
+      {/* ── Hero — centered vertical stack: render, wordmark, tagline, CTAs ── */}
+      <section className="relative flex flex-col items-center px-5 pb-20 pt-16 text-center">
         <img
           src="/hero/WebHero2.png"
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-center"
-        />
-        {/* Fade to bg color at the edges so the render blends into the page */}
-        <div
-          className="pointer-events-none absolute inset-0 z-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 75% 65% at 50% 38%, transparent 0%, transparent 55%, var(--rw-bg-app) 100%)",
-          }}
+          className="mx-auto h-auto w-full max-w-[420px]"
         />
 
-        <div className="relative z-10 mt-[22vw] max-w-[90vw] sm:mt-64">
+        <div className="mt-6">
           <HeroWordmark className="text-[clamp(2.75rem,9vw,5.5rem)] leading-none tracking-[-0.025em]" />
         </div>
 
         {/* Tagline is an open question — plain, honest placeholder, not final marketing copy */}
-        <p className="mt-5 max-w-md text-lg leading-relaxed text-rw-text-2">
+        <p className="mt-4 max-w-md text-lg leading-relaxed text-rw-text-2">
           Self-hosted 3D-printing workshop manager.
         </p>
 
