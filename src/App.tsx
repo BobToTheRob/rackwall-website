@@ -166,9 +166,9 @@ export default function App() {
           className="mx-auto h-auto w-full max-w-[840px]"
           style={{
             WebkitMaskImage:
-              "radial-gradient(ellipse 72% 72% at 50% 48%, #000 55%, transparent 92%)",
+              "radial-gradient(ellipse 68% 68% at 50% 46%, #000 35%, transparent 82%)",
             maskImage:
-              "radial-gradient(ellipse 72% 72% at 50% 48%, #000 55%, transparent 92%)",
+              "radial-gradient(ellipse 68% 68% at 50% 46%, #000 35%, transparent 82%)",
           }}
         />
 
