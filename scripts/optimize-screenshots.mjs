@@ -21,7 +21,9 @@ const outDir = path.resolve("public/screens");
 
 // Page shots are 2880x1800 (2x) native. 640/1024/1440w covers mobile through
 // a crisp 2x render at this site's actual grid cell width (~500px desktop,
-// max-w-5xl 2-col) with headroom if the section widens later.
+// max-w-5xl 2-col) with headroom if the section widens later. 2880w is the
+// native, no-upscale tier used ONLY by the click-to-fullscreen lightbox —
+// never added to the grid's srcSet, or thumbnails would pull full-res files.
 const PAGES = [
   { key: "overview", file: "overview-desktop-dark.png" },
   { key: "filament", file: "filament-desktop-dark.png" },
@@ -30,7 +32,7 @@ const PAGES = [
   { key: "spool-detail", file: "spool-detail-desktop-dark.png" },
   { key: "filament-light", file: "filament-desktop-light.png" },
 ];
-const PAGE_WIDTHS = [640, 1024, 1440];
+const PAGE_WIDTHS = [640, 1024, 1440, 2880];
 
 // Inline feature-card accents, displayed small (~280px) next to body copy.
 const ACCENTS = [
