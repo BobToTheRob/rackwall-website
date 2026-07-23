@@ -87,6 +87,12 @@ const FEATURES = [
     icon: <IconSpool />,
     title: "Filament inventory",
     body: "Vendors, filaments, and physical spools. Gram-native tracking — grams are the stored truth, percentages are derived. Cost tracking, drying status, multi-color support, archive/restore.",
+    accent: {
+      src: "/screens/accents/spool-card",
+      widths: [280, 560],
+      aspect: { width: 1062, height: 318 },
+      alt: "A single RackWall spool card showing remaining filament.",
+    },
   },
   {
     icon: <IconCube />,
@@ -97,6 +103,12 @@ const FEATURES = [
     icon: <IconPrinter />,
     title: "Printer status",
     body: "Live OctoPrint integration: state, progress, temps, camera, maintenance log, and print history — with automatic filament deduction on completed prints.",
+    accent: {
+      src: "/screens/accents/printer-card",
+      widths: [280, 560],
+      aspect: { width: 1608, height: 1254 },
+      alt: "A single RackWall printer card showing an in-progress print.",
+    },
   },
   {
     icon: <IconSparkle />,
@@ -106,11 +118,40 @@ const FEATURES = [
 ];
 
 const SCREENSHOTS = [
-  { label: "Overview" },
-  { label: "Filament inventory" },
-  { label: "Model detail" },
-  { label: "Settings" },
+  {
+    key: "overview",
+    caption: "What's low, what's printing, what changed. One screen.",
+    alt: "RackWall Overview dashboard: spool counts, low-stock warnings, active printer status, and recent activity.",
+  },
+  {
+    key: "filament",
+    caption: "Every spool you own, grouped by product. Grams are the truth — percentages are derived.",
+    alt: "Filament inventory grid showing filament cards with color swatches, remaining weight, and stock status.",
+  },
+  {
+    key: "printers",
+    caption: "Live status from OctoPrint: progress, temps, and the camera, without leaving the app.",
+    alt: "Printer page showing a Prusa MK3S+ mid-print with progress, nozzle and bed temperatures, and camera view.",
+  },
+  {
+    key: "models",
+    caption: "STLs, photos, tags, and the print history that goes with them.",
+    alt: "Model library grid showing 3D model cards with photos, titles, and tags.",
+  },
+  {
+    key: "spool-detail",
+    caption: "Down to the gram, with cost and drying status attached.",
+    alt: "Spool detail view showing remaining grams, cost tracking, and drying status for a single spool.",
+  },
+  {
+    key: "filament-light",
+    caption: "Two themes. Both fully built, neither an afterthought.",
+    alt: "The same filament inventory rendered in RackWall's Daylight light theme.",
+  },
 ];
+
+const SCREENSHOT_WIDTHS = [640, 1024, 1440];
+const SCREENSHOT_NATIVE = { width: 2880, height: 1800 };
 
 const STATUS_SOLID = [
   "Real test suite (114 tests) — correctness math, the deduction engine, migrations, schema round-trips, the auth seam",
@@ -300,13 +341,25 @@ docker compose -f infra/docker-compose.yml up --build`}
               </div>
               <h3 className="mb-1.5 text-base font-semibold text-rw-text">{f.title}</h3>
               <p className="text-sm leading-relaxed text-rw-text-muted">{f.body}</p>
+              {f.accent && (
+                <img
+                  src={`${f.accent.src}-${f.accent.widths[0]}.webp`}
+                  srcSet={f.accent.widths.map((w) => `${f.accent!.src}-${w}.webp ${w}w`).join(", ")}
+                  sizes="280px"
+                  width={f.accent.aspect.width}
+                  height={f.accent.aspect.height}
+                  loading="lazy"
+                  decoding="async"
+                  alt={f.accent.alt}
+                  className="mt-4 w-full max-w-[280px] rounded-lg border border-rw-border"
+                />
+              )}
             </div>
           ))}
         </div>
       </section>
 
       {/* ── Screenshots ───────────────────────────────────────────────────── */}
-      {/* PLACEHOLDER: swap each slot for a real screenshot when available */}
       <section className="border-t border-rw-border bg-rw-surface px-5 py-20">
         <div className="mx-auto max-w-5xl">
           <h2 className="mb-10 text-center text-2xl font-semibold tracking-tight text-rw-text">
@@ -314,15 +367,22 @@ docker compose -f infra/docker-compose.yml up --build`}
           </h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {SCREENSHOTS.map((s) => (
-              <div
-                key={s.label}
-                className="flex aspect-video items-center justify-center rounded-xl border border-dashed border-rw-border bg-rw-card"
-              >
-                <span className="text-sm text-rw-text-faint">
-                  {/* PLACEHOLDER */}
-                  {s.label} screenshot — coming soon
-                </span>
-              </div>
+              <figure key={s.key} className="m-0 overflow-hidden rounded-xl border border-rw-border bg-rw-card">
+                <img
+                  src={`/screens/pages/${s.key}-${SCREENSHOT_WIDTHS[SCREENSHOT_WIDTHS.length - 1]}.webp`}
+                  srcSet={SCREENSHOT_WIDTHS.map((w) => `/screens/pages/${s.key}-${w}.webp ${w}w`).join(", ")}
+                  sizes="(max-width: 640px) 100vw, 500px"
+                  width={SCREENSHOT_NATIVE.width}
+                  height={SCREENSHOT_NATIVE.height}
+                  loading="lazy"
+                  decoding="async"
+                  alt={s.alt}
+                  className="block h-auto w-full"
+                />
+                <figcaption className="border-t border-rw-border px-4 py-3 text-sm leading-relaxed text-rw-text-muted">
+                  {s.caption}
+                </figcaption>
+              </figure>
             ))}
           </div>
           <p className="mt-6 text-center text-sm text-rw-text-muted">
