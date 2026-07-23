@@ -132,7 +132,7 @@ export default function App() {
     <div className="min-h-screen bg-rw-app text-rw-text">
 
       {/* ── Nav — baked SVG lockup (correct for small nav use) ───────────── */}
-      <header className="sticky top-0 z-10 border-b border-rw-border bg-rw-app/80 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-rw-border bg-rw-app/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-3">
           <img src={navLogo} alt="RackWall" className="h-8 w-auto" />
           <div className="flex items-center gap-2">
@@ -158,7 +158,7 @@ export default function App() {
       </header>
 
       {/* ── Hero — centered vertical stack: render, wordmark, tagline, CTAs ── */}
-      <section className="relative flex flex-col items-center px-5 pb-20 pt-16 text-center">
+      <section className="relative isolate flex flex-col items-center px-5 pb-20 pt-16 text-center">
         {/* Full-bleed black stage band behind the render — melts into the page top/bottom */}
         <div
           aria-hidden="true"
