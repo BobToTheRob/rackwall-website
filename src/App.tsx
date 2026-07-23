@@ -1,5 +1,7 @@
+import { useState } from "react";
 import navLogo from "./assets/rackwall-logo-horizontal-dark.svg";
 import footerMark from "./assets/rackwall-logo-mark-dark.svg";
+import ScreenshotLightbox from "./components/ScreenshotLightbox";
 
 const GITHUB_URL = "https://github.com/BobToTheRob/rackwall";
 const DEMO_URL = "https://demo.rackwall.org";
@@ -169,6 +171,8 @@ const STATUS_NOT_YET = [
 ];
 
 export default function App() {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
   return (
     <div className="min-h-screen bg-rw-app text-rw-text">
 
@@ -366,24 +370,37 @@ docker compose -f infra/docker-compose.yml up --build`}
             See it in action
           </h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {SCREENSHOTS.map((s) => (
-              <figure key={s.key} className="m-0 overflow-hidden rounded-xl border border-rw-border bg-rw-card">
-                <img
-                  src={`/screens/pages/${s.key}-${SCREENSHOT_WIDTHS[SCREENSHOT_WIDTHS.length - 1]}.webp`}
-                  srcSet={SCREENSHOT_WIDTHS.map((w) => `/screens/pages/${s.key}-${w}.webp ${w}w`).join(", ")}
-                  sizes="(max-width: 640px) 100vw, 500px"
-                  width={SCREENSHOT_NATIVE.width}
-                  height={SCREENSHOT_NATIVE.height}
-                  loading="lazy"
-                  decoding="async"
-                  alt={s.alt}
-                  className="block h-auto w-full"
-                />
-                <figcaption className="border-t border-rw-border px-4 py-3 text-sm leading-relaxed text-rw-text-muted">
-                  {s.caption}
-                </figcaption>
-              </figure>
-            ))}
+            {SCREENSHOTS.map((s, i) => {
+              const captionId = `screenshot-caption-${s.key}`;
+              return (
+                <figure key={s.key} className="m-0 overflow-hidden rounded-xl border border-rw-border bg-rw-card">
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(i)}
+                    aria-labelledby={captionId}
+                    className="group block w-full cursor-pointer"
+                  >
+                    <img
+                      src={`/screens/pages/${s.key}-${SCREENSHOT_WIDTHS[SCREENSHOT_WIDTHS.length - 1]}.webp`}
+                      srcSet={SCREENSHOT_WIDTHS.map((w) => `/screens/pages/${s.key}-${w}.webp ${w}w`).join(", ")}
+                      sizes="(max-width: 640px) 100vw, 500px"
+                      width={SCREENSHOT_NATIVE.width}
+                      height={SCREENSHOT_NATIVE.height}
+                      loading="lazy"
+                      decoding="async"
+                      alt={s.alt}
+                      className="block h-auto w-full transition-[filter] duration-150 group-hover:brightness-110 motion-reduce:transition-none"
+                    />
+                  </button>
+                  <figcaption
+                    id={captionId}
+                    className="border-t border-rw-border px-4 py-3 text-sm leading-relaxed text-rw-text-muted"
+                  >
+                    {s.caption}
+                  </figcaption>
+                </figure>
+              );
+            })}
           </div>
           <p className="mt-6 text-center text-sm text-rw-text-muted">
             Or skip straight to the{" "}
@@ -466,6 +483,15 @@ docker compose -f infra/docker-compose.yml up --build`}
           </div>
         </div>
       </footer>
+
+      {lightboxIndex !== null && (
+        <ScreenshotLightbox
+          items={SCREENSHOTS}
+          openIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onNavigate={setLightboxIndex}
+        />
+      )}
 
     </div>
   );
